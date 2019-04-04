@@ -35,19 +35,19 @@ public class NidiGraphHandler {
 		mutableGraph = importFromDotFileUtf8(file);
 	}
 	
-	private void setNodeLable(MutableNode mn, String label) {
+	public void setNodeLable(MutableNode mn, String label) {
 		MutableAttributed<?, ?> mutableAttributed = mn.attrs();
 		mutableAttributed.add("label", label);
 	}
 
-	private void setLableOfLink(MutableNode startNode, int i, String label) {
+	public void setLableOfLink(MutableNode startNode, int i, String label) {
 		List <Link> ll = startNode.links();
 		Link l = ll.get(i);
 		MutableAttributed<?, ?> mutableAttributed = l.attrs();
 		mutableAttributed.add("label", label);
 	}
 
-	private String getNodeLabel(MutableNode mn) {
+	public String getNodeLabel(MutableNode mn) {
 		MutableAttributed<?, ?> mutableAttributed = mn.attrs();
 		String label;
 		Object ob = mutableAttributed.get("label");
@@ -55,12 +55,12 @@ public class NidiGraphHandler {
 		return label;
 	}
 	
-	private MutableNode getLinkSource(Link link) {
+	public MutableNode getLinkSource(Link link) {
 		MutableNode linkSource = (MutableNode) link.from();
 		return linkSource;
 	}
 	
-	private MutableNode getLinkTarget(Link link) {
+	public MutableNode getLinkTarget(Link link) {
 		LinkTarget linkTarget = link.to();
 		if (fieldExtractor==null)
 			fieldExtractor = setAccessibilityToPrivateField(linkTarget.getClass(), "node");
@@ -85,7 +85,7 @@ public class NidiGraphHandler {
 		return null;
 	}
 	
-	private String getLinkLabel(Link link) {
+	public String getLinkLabel(Link link) {
 		MutableAttributed<?, ?> mutableAttributed = link.attrs();
 		String label;
 		Object ob = mutableAttributed.get("label");
